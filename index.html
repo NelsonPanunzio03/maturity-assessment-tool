@@ -7,30 +7,30 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   :root {
-    --ink: #14213d;
-    --muted: #5b6577;
-    --line: #dde2ea;
-    --bg: #f5f7fa;
+    --ink: #000000;
+    --muted: #4d4d4d;
+    --line: #bdbdbd;
+    --bg: #ffffff;
     --card: #ffffff;
-    --accent: #0b6e8a;
-    --accent-dark: #084f63;
-    --accent-soft: #e3f2f7;
-    --warn: #b3261e;
-    --warn-soft: #fdecea;
-    --gold: #c98a0a;
+    --accent: #000000;
+    --accent-dark: #1a1a1a;
+    --accent-soft: #f0f0f0;
+    --warn: #000000;
+    --warn-soft: #e6e6e6;
+    --gold: #000000;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--bg); color: var(--ink);
     font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
-  header.hero { background: var(--ink); color: #fff; padding: 40px 20px 32px; }
+  header.hero { background: #000; color: #fff; padding: 40px 20px 32px; }
   .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
   .hero h1 { margin: 0 0 8px; font-size: 1.9rem; letter-spacing: -0.01em; }
-  .hero p { margin: 0; color: #c8d1e3; max-width: 680px; }
-  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; color: #7fd0e6; margin-bottom: 8px; }
+  .hero p { margin: 0; color: #d9d9d9; max-width: 680px; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; color: #bfbfbf; margin-bottom: 8px; }
 
-  .progress-bar { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid var(--line); }
+  .progress-bar { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 2px solid #000; }
   .progress-inner { max-width: 920px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 14px; font-size: .9rem; color: var(--muted); }
   .track { flex: 1; height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
   .fill { height: 100%; width: 0; background: var(--accent); transition: width .25s; }
@@ -39,23 +39,23 @@
   .intro { background: var(--accent-soft); border-left: 4px solid var(--accent); padding: 14px 18px; border-radius: 6px; margin-bottom: 24px; font-size: .95rem; }
 
   .dimension { background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
-  .dim-head { padding: 18px 22px; background: #fafbfd; border-bottom: 1px solid var(--line); }
+  .dim-head { padding: 18px 22px; background: #f7f7f7; border-bottom: 1px solid var(--line); }
   .dim-head .num { font-size: .75rem; font-weight: 700; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; }
   .dim-head h2 { margin: 2px 0 4px; font-size: 1.3rem; }
   .dim-head p { margin: 0; color: var(--muted); font-size: .93rem; }
 
   .question { padding: 20px 22px; border-bottom: 1px solid var(--line); }
   .question:last-child { border-bottom: none; }
-  .question.missing { background: var(--warn-soft); }
+  .question.missing { background: var(--warn-soft); border-left: 6px solid #000; }
   .q-text { font-weight: 600; margin: 0 0 12px; }
   .q-text .qn { color: var(--accent); margin-right: 6px; }
   .opts { display: grid; gap: 8px; }
   .opt { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; background: #fff; font-size: .93rem; }
   .opt:hover { border-color: var(--accent); }
   .opt input { margin-top: 4px; accent-color: var(--accent); }
-  .opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .opt:has(input:checked) { border: 2px solid #000; background: var(--accent-soft); padding: 9px 11px; font-weight: 600; }
   .opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .err { display: none; color: var(--warn); font-size: .85rem; margin-top: 8px; font-weight: 600; }
+  .err { display: none; color: #000; font-size: .85rem; margin-top: 8px; font-weight: 700; text-decoration: underline; }
   .question.missing .err { display: block; }
 
   .actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
@@ -63,7 +63,7 @@
   button.primary:hover { background: var(--accent-dark); }
   button.secondary { background: #fff; color: var(--ink); border: 1px solid var(--line); padding: 10px 18px; font-size: .9rem; border-radius: 8px; cursor: pointer; }
   button.secondary:hover { border-color: var(--accent); }
-  #formMsg { color: var(--warn); font-weight: 600; }
+  #formMsg { color: #000; font-weight: 700; text-decoration: underline; }
 
   details.testing { margin-top: 28px; font-size: .85rem; color: var(--muted); }
   details.testing summary { cursor: pointer; }
@@ -82,20 +82,20 @@
   table.scores td { padding: 8px 4px; border-bottom: 1px solid var(--line); }
   table.scores td.val { text-align: right; font-weight: 700; white-space: nowrap; }
   table.scores td.stage { color: var(--muted); font-size: .8rem; text-align: right; white-space: nowrap; padding-left: 10px; }
-  table.scores tr.low td { background: var(--warn-soft); }
+  table.scores tr.low td { background: var(--warn-soft); font-weight: 700; }
   .overall { margin-top: 12px; font-size: .9rem; color: var(--muted); }
   .overall strong { color: var(--ink); }
 
-  .profile { margin-top: 20px; border-left: 6px solid var(--gold); }
+  .profile { margin-top: 20px; border: 2px solid #000; border-left: 10px solid #000; }
   .profile .tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); font-weight: 700; }
   .profile h3 { font-size: 1.35rem; margin: 2px 0 8px; }
   .next { margin-top: 12px; padding: 12px 14px; background: var(--accent-soft); border-radius: 8px; font-size: .95rem; }
   .next strong { color: var(--accent-dark); }
-  .tie-note { margin: 0 0 12px; padding: 10px 12px; background: #fff8e6; border: 1px solid #f0d58a; border-radius: 8px; font-size: .88rem; }
+  .tie-note { margin: 0 0 12px; padding: 10px 12px; background: #f0f0f0; border: 1px solid #000; border-radius: 8px; font-size: .88rem; }
   .low-card { padding: 14px 0; border-top: 1px solid var(--line); }
   .low-card:first-of-type { border-top: 0; padding-top: 0; }
   .low-card h4 { margin: 0 0 4px; font-size: 1rem; }
-  .low-card .sc { color: var(--warn); font-weight: 700; }
+  .low-card .sc { color: #000; font-weight: 700; }
   .low-card p { margin: 4px 0; font-size: .93rem; }
   .caveat { margin-top: 20px; font-size: .85rem; color: var(--muted); }
   footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 20px; }
@@ -211,7 +211,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Data owners revise validation rules based on repeat-error reports and compare error rates before and after each revision."
+            "t": "Data owners revise validation rules using repeat-error trends and verify a subsequent reduction in data errors."
           }
         ]
       },
@@ -237,7 +237,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Duplicate trends are analyzed to improve preventive rules, with reductions measured after changes."
+            "t": "Preventive duplicate checks are revised using recurring duplicate trends, with duplicate rates measured afterward."
           }
         ]
       },
@@ -263,7 +263,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Validation rules are revised using recurring errors, and the effect on order corrections is measured."
+            "t": "Validation rules are updated using documented errors, and subsequent order-correction rates are measured."
           }
         ]
       },
@@ -289,7 +289,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Recurring error patterns drive tested process improvements, with repeat errors measured afterward."
+            "t": "Process changes target recurring record errors, with repeat-error rates compared before and after."
           }
         ]
       }
@@ -329,7 +329,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "The team tests specific portal features against existing ones and rolls out features with documented gains in completion or fewer corrections."
+            "t": "The distributor expands customer ordering features only after testing demonstrates a measurable improvement in order completion."
           }
         ]
       },
@@ -355,7 +355,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Teams compare alternative availability displays or substitution choices and retain versions that reduce measured order corrections."
+            "t": "Customer-facing availability changes are retained only when testing shows fewer order corrections."
           }
         ]
       },
@@ -381,7 +381,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "The distributor tests status-display improvements and adopts those that measurably reduce inquiries or corrections."
+            "t": "Status-display changes are adopted after testing shows a measurable reduction in customer inquiries."
           }
         ]
       },
@@ -407,7 +407,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Teams compare ordering-error metrics before and after a tested fix and adopt fixes that show a reduction."
+            "t": "Ordering-process fixes are adopted after a trial demonstrates a lower ordering-error rate."
           }
         ]
       }
@@ -447,7 +447,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Teams trial changes to pick or load sequences and compare documented pick-accuracy rates before and after the trial."
+            "t": "Picking-process changes are adopted after a trial demonstrates higher pick accuracy."
           }
         ]
       },
@@ -473,7 +473,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Teams trial revised routes or loading sequences and compare on-time delivery and route cost against the prior plan."
+            "t": "Route-planning changes are adopted after a trial demonstrates better on-time delivery performance."
           }
         ]
       },
@@ -499,7 +499,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Teams analyze recurring exceptions, test process changes, and measure reductions in errors."
+            "t": "Exception-handling changes are adopted after testing demonstrates fewer repeat exceptions."
           }
         ]
       },
@@ -525,7 +525,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Measured results are used to test and expand changes to schedules, loading, and routes while monitoring costs."
+            "t": "Operational process changes are expanded after controlled tests demonstrate measurable performance gains."
           }
         ]
       }
@@ -565,85 +565,85 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Proposed AI updates are benchmarked against the current version using refreshed cases and released only after documented gains."
+            "t": "AI use is expanded to additional purchasing workflows only after a controlled trial demonstrates a measurable operational benefit."
           }
         ]
       },
       {
         "id": "q14",
-        "text": "How are AI-generated purchasing recommendations validated before use?",
+        "text": "What documented checks verify AI purchasing inputs and outputs?",
         "options": [
           {
             "v": 1,
-            "t": "There is no AI tool or documented validation process."
+            "t": "No AI-specific input or output checks are documented."
           },
           {
             "v": 2,
-            "t": "Pilot outputs are reviewed manually against sample reports."
+            "t": "Staff manually compare pilot outputs with sample purchasing reports."
           },
           {
             "v": 3,
-            "t": "An assigned owner maintains known test cases and human intervention rules."
+            "t": "A workflow owner uses documented test cases to verify outputs before operational use."
           },
           {
             "v": 4,
-            "t": "Teams monitor live errors and overrides and switch to verified reports when needed."
+            "t": "Scheduled validation checks flag invalid source data or AI outputs outside defined limits."
           },
           {
             "v": 5,
-            "t": "Proposed model changes are compared against the current tool using refreshed test cases before release."
+            "t": "Validation tests are updated using documented failures, with subsequent failure rates measured."
           }
         ]
       },
       {
         "id": "q15",
-        "text": "What operational evidence is recorded to monitor AI tools used in purchasing?",
+        "text": "How are AI errors and employee overrides monitored during purchasing operations?",
         "options": [
           {
             "v": 1,
-            "t": "No AI performance monitoring exists because AI is not used in the workflow."
+            "t": "No AI operational monitoring process exists."
           },
           {
             "v": 2,
-            "t": "A limited pilot is checked manually without routine production monitoring."
+            "t": "Pilot users report problems informally without a standard log."
           },
           {
             "v": 3,
-            "t": "A defined AI workflow has an owner and documented pre-release checks."
+            "t": "A named workflow owner records reported AI errors and overrides using a standard process."
           },
           {
             "v": 4,
-            "t": "Production monitoring records errors and employee overrides against documented alert thresholds."
+            "t": "Operational error and override rates are tracked against documented thresholds."
           },
           {
             "v": 5,
-            "t": "Monitoring findings trigger revised test cases; releases are approved only after a documented comparison with the deployed version."
+            "t": "Monitoring trends trigger tested corrective changes whose effect on error rates is measured."
           }
         ]
       },
       {
         "id": "q16",
-        "text": "What evidence is required before expanding an AI tool to additional purchasing teams?",
+        "text": "What documented evidence governs expansion of AI to additional purchasing teams?",
         "options": [
           {
             "v": 1,
-            "t": "No AI expansion process exists because no pilots have been documented."
+            "t": "There is no documented AI expansion procedure."
           },
           {
             "v": 2,
-            "t": "Pilot staff review sample outputs, but expansion criteria are not formalized."
+            "t": "Pilot results are discussed informally before additional teams are considered."
           },
           {
             "v": 3,
-            "t": "A workflow owner documents use cases, human review rules, and test results before expansion."
+            "t": "A workflow owner documents test results and approves each proposed expansion."
           },
           {
             "v": 4,
-            "t": "Teams require monitored performance and documented fallback controls during rollout."
+            "t": "Expansion decisions use recorded operational performance against predefined acceptance criteria."
           },
           {
             "v": 5,
-            "t": "Expansion requires comparative test results showing measurable improvements in accuracy or purchasing efficiency."
+            "t": "Expansion follows a controlled comparison demonstrating a measurable improvement over the existing process."
           }
         ]
       }
@@ -683,7 +683,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Teams pilot revised training, compare adoption measures before and after, and expand revisions with documented gains."
+            "t": "Revised training is expanded after a pilot demonstrates improved tool adoption."
           }
         ]
       },
@@ -709,7 +709,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Revised practice tasks are piloted, and managers compare independent task-completion results before wider rollout."
+            "t": "Revised practice tasks are expanded after testing demonstrates higher independent task-completion rates."
           }
         ]
       },
@@ -735,7 +735,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "Feedback and usage trends guide tested workflow changes that reduce workarounds across locations."
+            "t": "Workflow changes are expanded after a pilot demonstrates fewer manual workarounds."
           }
         ]
       },
@@ -761,7 +761,7 @@ const DIMENSIONS = [
           },
           {
             "v": 5,
-            "t": "A training change is piloted at one location and expanded only when adoption measures improve compared with the prior approach."
+            "t": "A training change is expanded beyond the pilot location only when adoption metrics improve."
           }
         ]
       }
@@ -779,8 +779,9 @@ const DIMENSIONS = [
 
 /* Archetypal profiles from the Interpretation Guide (Member A), evaluated in order; first match wins.
    s = { data, ordering, warehouse, ai, training } (1.0 to 5.0).
-   "Low" = averages to Stage 1-2 and "High" = averages to Stage 4-5 (rounded, matching the stage shown in the table).
-   "Significantly lower" = at least one full point below every other dimension.
+   Building the Basics / Ready to Optimize: each average is rounded to the nearest whole stage (.5 rounds up);
+   stages 1-2 are low and 4-5 are high. "Significantly lower" = actual average at least one point below every
+   other dimension. All other comparisons use actual averages.
    The last profile is a tool-only fallback for patterns the Guide does not name. */
 const EPS = 1e-9;
 const stg = x => Math.round(x + EPS);
@@ -790,14 +791,14 @@ const PROFILES = [
     id: "basics",
     name: "Building the Basics",
     test: s => Object.values(s).every(v => stg(v) <= 2),
-    description: "All five scores are between 1 and 2. Separate files and inconsistent workflows make it hard for teams to work from the same information.",
+    description: "All five rounded maturity stages are 1 or 2. Separate files and inconsistent workflows make it hard for teams to work from the same information.",
     action: "Assign an owner and create one shared process for maintaining product and supplier records."
   },
   {
     id: "optimize",
     name: "Ready to Optimize",
     test: s => Object.values(s).every(v => stg(v) >= 4),
-    description: "All five scores are between 4 and 5. The distributor has established systems and can measure their performance, so it can test targeted improvements.",
+    description: "All five rounded maturity stages are 4 or 5. The distributor has established systems and can measure their performance, so it can test targeted improvements.",
     action: "Pilot a new demand forecast in one market and measure forecast accuracy and stockouts before expanding it."
   },
   {
@@ -825,8 +826,8 @@ const PROFILES = [
     id: "mixed",
     name: "Mixed Profile",
     test: () => true,
-    description: "Your scores do not match one of the five named patterns: capability is developing at different speeds without a single dominant gap. The two lowest dimensions below are where the next investment is likely to matter most.",
-    action: "Work on the two lowest-scoring dimensions shown below, using the next-stage description for each as the target."
+    description: "Your scores match none of the five named patterns, so the two lowest-scoring areas (including ties) are highlighted below.",
+    action: "Use the next-stage description for each highlighted area to choose a specific improvement."
   }
 ];
 
@@ -996,15 +997,15 @@ function renderResults(scores) {
       datasets: [{
         label: "Your distributor",
         data: DIMENSIONS.map(d => Number(scores[d.id].toFixed(2))),
-        backgroundColor: "rgba(11,110,138,0.25)",
-        borderColor: "#0b6e8a",
-        pointBackgroundColor: "#0b6e8a",
+        backgroundColor: "rgba(0,0,0,0.18)",
+        borderColor: "#000000",
+        pointBackgroundColor: "#000000",
         borderWidth: 2
       }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      scales: { r: { min: 0, max: 5, ticks: { stepSize: 1, backdropColor: "transparent" }, pointLabels: { font: { size: 12 } } } },
+      scales: { r: { min: 0, max: 5, ticks: { stepSize: 1, backdropColor: "transparent", color: "#333" }, grid: { color: "#999" }, angleLines: { color: "#999" }, pointLabels: { font: { size: 12 }, color: "#000" } } },
       plugins: { legend: { display: false } }
     }
   });
@@ -1030,7 +1031,7 @@ function renderResults(scores) {
   if (tied) {
     const note = document.createElement("div");
     note.className = "tie-note";
-    note.textContent = "Scores are tied at the bottom, so all tied dimensions are shown. They are listed in priority order: product and supplier data first, then employee adoption, then warehouse, ordering, and AI.";
+    note.textContent = "Some scores are tied for the lowest two places, so every tied dimension is shown. They are listed in priority order: product and supplier data first, then employee adoption, then warehouse, ordering, and AI.";
     lp.appendChild(note);
   }
   low.forEach(l => {
